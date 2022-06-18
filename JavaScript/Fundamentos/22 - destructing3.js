@@ -6,7 +6,8 @@
  *  A função retorna um valor aleatório entre min e max
  */ 
 function rand({ min = 0, max = 1000} = {}) {
-  const valor = Math.random() * (max - min) + min
+  const valor = Math.random() * (max - min + 1) + min // Tratativa necessária pois sem
+  //o +1 não chegaria no valor máximo
   return Math.floor(valor)
 }
 
