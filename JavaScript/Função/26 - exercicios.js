@@ -107,19 +107,24 @@ console.log('\nExercício 37');
 //Exercício 38
 console.log('\nExercício 38');
 (function() {
-  const minimo = 0;
-  const maximo = 100;
+  const min = 0;
+  const max = 100;
   const impares = (min = 0, max = 100) => {
     if(min > max)
       [min, max] = [max, min]
-    const impares = []
-    for(min ; min <= max; min++ ) {
-      if(min % 2 != 0)
-        impares.push(min)
-    }
-    console.log(impares)
+    const imp = []
+    //Cria um array com espaço suficiente para caber todos os números entre maior e menor
+    new Array(max - min)
+      //preenche o array de acordo com valores informados pelo map
+      .fill()
+      //mapeia os elementos do array somando o indice atual com o valor mínimo
+      .map((d, i) => i + min ) 
+      //valida quais elementos do array são impares e adiciona em um novo array
+      .forEach((valor) => { if(valor % 2 != 0) imp.push(valor) } )
+      //exibe valores impares inseridos no array
+    return console.log(imp) ;
   }
-  impares()
+  impares(20, 31)
 })();
 
 //Exercício 39
