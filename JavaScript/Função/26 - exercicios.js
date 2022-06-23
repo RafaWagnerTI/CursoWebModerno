@@ -51,6 +51,156 @@ console.log('\nExercício 05');
   formataEmReal(valorFlutuante)
 })();
 
+//Exercício 06
+console.log('\nExercício 06');
+(function() {
+  const capitalInicial = 10000
+  const taxaPercentual = 0.1
+  const tempoEmAnos = 3
+  const calculaJurosSimples = (capital, taxa ,tempo) => console.log(`R$ ${(capital*taxa*tempo).toFixed(2)}`);
+  const calculaJurosComposto = (capital, taxa, tempo) => { 
+    const montante = capital * (Math.pow(1+taxa, tempo))
+    console.log(`R$ ${(montante - capital).toFixed(2)}`)
+  }
+  calculaJurosSimples(capitalInicial, taxaPercentual, tempoEmAnos)
+  calculaJurosComposto(capitalInicial, taxaPercentual, tempoEmAnos)
+})()
+
+//Exercício 07
+console.log('\nExercício 07');
+(function() {
+  const calculaDelta = (a, b, c) => {
+    const delta = Math.pow(b, 2) - 4 * a * c
+    return delta
+  }
+  const calculaX = (a, b, c) => {
+    const delta = calculaDelta(a, b, c)
+    if(delta >= 0) {
+      const x = [
+        x1 = ((-b + Math.sqrt(delta)) / (2 * a)), 
+        x2 = ((-b - Math.sqrt(delta)) / (2 * a))
+      ]
+      return x
+    }
+    else throw Error("delta é negativo!")
+  }
+
+  const calculaBhaskara = (a, b, c) => {
+    calculaX(a, b, c).forEach((valor) => console.log(`O resultado é ${(Math.pow(a * valor,2)) + (b * valor) + c }`))
+  }
+  calculaBhaskara(1, 8, -9)
+})()
+
+//Exercício 08
+console.log('\nExercício 08');
+(function() {
+  const jogos = []
+  let posPiorJogo = 0
+  let piorJogo = 999999999999
+  let recorde = 0
+  let recordeBatido = 0
+  const adicionarJogo = (jogos, pontuacao) => { 
+    jogos.push(pontuacao); return jogos.forEach(
+      (valor, indice) => { 
+        if(valor < piorJogo) {
+          piorJogo = valor
+          posPiorJogo = indice+1
+        }
+        if(indice > 0) 
+          if(valor > recorde) {
+            recorde = valor
+            recordeBatido++    
+          }
+      }) 
+  }
+  
+  adicionarJogo(jogos, 10)
+  adicionarJogo(jogos, 20)
+  adicionarJogo(jogos, 30)
+  adicionarJogo(jogos, 30)
+  adicionarJogo(jogos, 4)
+  console.log(`Pedro bateu seu recorde ${recordeBatido} vezes.\nSeu pior jogo foi o ${posPiorJogo}º`)
+})()
+
+//Exercício 09
+console.log('\nExercício 09');
+(function() {
+  const notas = [73, 67, 38, 33]
+  const notasArredondadas = notas.map((valor, indice) => 
+    ((Math.ceil(valor/5)*5) - valor) <= 2 && valor >= 38 ? (Math.ceil(valor/5)*5) : valor)
+  
+  notasArredondadas.forEach((valor) => 
+    valor < 40 ? console.log(`Reprovado, sua nota foi ${valor}`) : console.log(`Aprovado, sua nota foi ${valor}`))
+})()
+
+//Exercício 10
+console.log('\nExercício 10');
+(function() {
+  const validaDivisivelPor3 = (valor) => valor % 3 === 0
+  console.log(validaDivisivelPor3(30)) 
+})()
+
+//Exercício 30
+console.log('\nExercício 30');
+(function() {
+  const arrayNumeros = [6, 0, -2, 14, 9, 10, -8]
+  let minimo = 9999999
+  let maximo = 0
+  arrayNumeros.forEach((valor) => {if(valor < minimo) minimo = valor; if(valor > maximo) maximo = valor})
+  console.log(`O menor valor é ${minimo}\nO maior valor é ${maximo}`)
+})()
+
+//Exercício 31
+console.log('\nExercício 31');
+(function() {
+  const numerosNegativos = [8, -7, 3, -1, 0, -4, 6]
+  console.log(numerosNegativos.filter((valor) => valor < 0))
+})()
+
+//Exercício 32
+console.log('\nExercício 32');
+(function() {
+  const numerosInteiros = [10, 5, 3, 1, 7, 9]
+  let soma = 0
+  numerosInteiros.forEach((valor) => {soma += valor})
+  console.log(`A média dos valores é ${(soma/numerosInteiros.length).toFixed(2)}`)
+})()
+
+//Exercício 33
+console.log('\nExercício 33');
+(function() {
+  const arrayInteiro = [0, 1, 2, 3]
+  const arrayString = ["a", "B", "c", "D"]
+  const arrayDouble = [0.5, 1.3, 2.7, 3.6]
+
+  console.log([].concat(arrayInteiro, arrayString, arrayDouble))
+  console.log(arrayInteiro.concat(arrayString).concat(arrayDouble))
+
+})()
+
+//Exercício 34
+console.log('\nExercício 34');
+(function() {
+  const palavra1 = "BaNaNa"
+  const palavra2 = "bAn"
+  let saida = ""
+  const validaCaracteres = (palavra1, palavra2) => { 
+    if(palavra2.length > palavra1.length)
+      [palavra2, palavra1] = [palavra1, palavra2]
+    for(let i = 0; i < palavra2.length; i++) {
+      const letra = palavra2.toLowerCase().charAt(i)
+      for(let j = 0; j < palavra1.length; j++) {
+        if(letra === palavra1.toLowerCase().charAt(j)) {
+          saida += letra
+          break;
+        }
+      }
+    }
+    console.log(saida === palavra2.toLowerCase())
+  }
+  validaCaracteres(palavra1, palavra2)
+})()
+
 //Exercício 35
 console.log('\nExercício 35');
 (function() {
@@ -89,16 +239,11 @@ console.log('\nExercício 37');
   const inicio = 3
   const razao = 3
   const prog = (numTermo, a1, r, tipo = "PA") => {
-    const prog = []
-    let soma = 0
-    for(let i = 0; i < numTermo; i++) {
-      prog.push(a1)
-      soma += a1
-      if(tipo === "PA")
-        a1 += r
-      else a1 *= r
-    }
-    console.log(`A progressão ${tipo === "PA" ? "aritmética" : "geométrica"} é = ${prog}\nA soma desses valores é = ${soma}`)
+    console.log(new Array(numTermo)
+      //preenche o array com os valores do map
+      .fill()
+      //mapeia os elementos do array definindo novos valores de acordo com o tipo de progressão
+      .map((d, i) =>  i === 0 ? a1 : tipo === "PA" ? a1 += r : a1 *= r ))
   }
   prog(nums, inicio, razao, "PA")
   prog(nums, inicio, razao, "PG")
@@ -112,19 +257,16 @@ console.log('\nExercício 38');
   const impares = (min = 0, max = 100) => {
     if(min > max)
       [min, max] = [max, min]
-    const imp = []
     //Cria um array com espaço suficiente para caber todos os números entre maior e menor
-    new Array(max - min)
+    return console.log(new Array(max - min)
       //preenche o array de acordo com valores informados pelo map
       .fill()
-      //mapeia os elementos do array somando o indice atual com o valor mínimo
-      .map((d, i) => i + min ) 
-      //valida quais elementos do array são impares e adiciona em um novo array
-      .forEach((valor) => { if(valor % 2 != 0) imp.push(valor) } )
-      //exibe valores impares inseridos no array
-    return console.log(imp) ;
+      //mapeia os elementos do array somando o indice dos elementos com o valor mínimo
+      .map((d, i) => i + min )
+      //filtra os elementos presentes no array
+      .filter((valor) => valor % 2 != 0));
   }
-  impares(20, 31)
+  impares()
 })();
 
 //Exercício 39
