@@ -82,7 +82,7 @@ console.log('\nExercício 07');
       ]
       return x
     }
-    else throw Error("delta é negativo!")
+    else throw new Error("delta é negativo!")
   }
 
   const calculaBhaskara = (a, b, c) => {
@@ -140,6 +140,201 @@ console.log('\nExercício 10');
   console.log(validaDivisivelPor3(30)) 
 })()
 
+//Exercício 11
+console.log('\nExercício 11');
+(function() {
+  const validaAnoBissexto = (valor) => valor % 4 === 0 && valor % 100 !== 0 
+  console.log(validaAnoBissexto(2024))
+})()
+
+//Exercício 12
+console.log('\nExercício 12');
+(function() {
+  const fatoraValor = (valor) => {
+    fator = valor; 
+    while(fator > 1) { 
+      valor *= --fator 
+    }; 
+    return valor }
+  console.log(fatoraValor(7))
+})()
+
+//Exercício 13
+console.log('\nExercício 13');
+(function() {
+  const validaDiaSemana = (dia) => {
+    let diaSemana = ""
+    switch (dia) {
+      case 1 : diaSemana = "Domingo"; break;
+      case 2 : diaSemana = "Segunda-Feira"; break;
+      case 3 : diaSemana = "Terça-Feira"; break;
+      case 4 : diaSemana = "Quarta-Feira"; break;
+      case 5 : diaSemana = "Quinta-Feira"; break;
+      case 6 : diaSemana = "Sexta-Feira"; break;
+      case 7 : diaSemana = "Sábado"; break;
+      default: diaSemana = "Dia inválido"; break;
+    }
+    console.log(diaSemana)
+  }
+  validaDiaSemana(6)
+})()
+
+//Exercício 14
+console.log('\nExercício 14');
+(function() {
+  const compraFruta = (fruta) => {
+    let resposta = ""
+    switch (fruta.toLowerCase()) {
+      case "maçã" : resposta = "Não vendemos esta fruta aqui"; break;
+      case "kiwi" : resposta = "Estamos com escassez de kiwis"; break;
+      case "melancia" : resposta = "Aqui está, são 3 reais o quilo"; break;
+      default: throw new Error("Não conhecemos essa fruta");  
+    }
+    console.log(resposta)
+  }
+compraFruta("MaÇã")
+compraFruta("kIwI")
+compraFruta("MeLaNcIa")
+})()
+
+//Exercício 15
+console.log('\nExercício 15');
+(function() {
+  const validaModelo = (modelo) => {
+    let resposta = ""
+    switch (modelo.toLowerCase()) {
+      case "hatch" : resposta = "Compra efetuada com sucesso"; break;
+      case "caminhonete": resposta = "Tem certeza que prefere este modelo?"; break;
+      case "sedan" : resposta = "Tem certeza que prefere este modelo?"; break;
+      case "motocicleta" : resposta = "Tem certeza que prefere este modelo?"; break;
+      default: resposta = "Não trabalhamos com esse modelo!";
+    }
+    console.log(resposta)
+  }
+  validaModelo("hatch")
+  validaModelo("caminhonete")
+  validaModelo("sedan")
+  validaModelo("motocicleta")
+  validaModelo("iate")
+})()
+
+//Exercício 16
+console.log('\nExercício 16');
+(function() {
+  const calculadora = (num1, operador, num2) => {
+    let resultado = 0 
+    switch (operador) {
+      case "+" : resultado = num1 + num2; break;
+      case "-" : resultado = num1 - num2; break;
+      case "*" : resultado = num1 * num2; break;
+      case "/" : resultado = num1 / num2; break;
+      default: resultado = "Operação inválida!"; break;
+    }
+    console.log( typeof resultado === Number ? resultado.toFixed(2) : resultado)
+  }
+  calculadora(8, "+", 6)
+  calculadora(8, "-", 6)
+  calculadora(8, "*", 6)
+  calculadora(8, "/", 6)
+  calculadora(8, "%", 6)
+})()
+
+//Exercício 17
+console.log('\nExercício 17');
+(function() {
+  const aumentoSalarial = (salarioAtual, plano) => {
+    switch(plano) {
+      case "A": salarioAtual = salarioAtual + (salarioAtual * 0.1) ; break;
+      case "B": salarioAtual = salarioAtual + (salarioAtual * 0.15); break;
+      case "C": salarioAtual = salarioAtual + (salarioAtual * 0.2); break;
+      default: salarioAtual = 0
+    }
+    console.log(salarioAtual = 0 ? "Plano é inválido" : `O novo salário é de ${salarioAtual.toFixed(2)}R$`);
+  }
+  aumentoSalarial(2000, "A")
+  aumentoSalarial(2000, "B")
+  aumentoSalarial(2000, "C")
+  aumentoSalarial(2000, "D")
+})()
+
+//Exercício 18
+console.log('\nExercício 18');
+(function() {
+  const lePorExtenso = (numero) => {
+    let resultado = ""
+    switch(numero) {
+      case 0: resultado = "Zero"; break;
+      case 1: resultado = "Um"; break;
+      case 2: resultado = "Dois"; break;
+      case 3: resultado = "Três"; break;
+      case 4: resultado = "Quatro"; break;
+      case 5: resultado = "Cinco"; break;
+      case 6: resultado = "Seis"; break;
+      case 7: resultado = "Sete"; break;
+      case 8: resultado = "Oito"; break;
+      case 9: resultado = "Nove"; break;
+      case 10: resultado = "Dez"; break;
+      default: resultado = "Número fora do intervalo";
+    }
+    console.log(resultado)
+  }
+  lePorExtenso(7)
+  lePorExtenso(11)
+})()
+
+//Exercício 19
+console.log('\nExercício 19');
+(function() {
+  const comprarProduto = (codProduto, qtde) => {
+    let resultado = 0
+    switch (codProduto) {
+      case 100: resultado = `O total da compra foi de ${(3 * qtde).toFixed(2)}R$` ; break;
+      case 200: resultado = `O total da compra foi de ${(4 * qtde).toFixed(2)}R$`; break; 
+      case 300: resultado = `O total da compra foi de ${(5.5 * qtde).toFixed(2)}R$` ; break; 
+      case 400: resultado = `O total da compra foi de ${(7.5 * qtde).toFixed(2)}R$` ; break; 
+      case 500: resultado = `O total da compra foi de ${(3.5 * qtde).toFixed(2)}R$` ; break; 
+      case 600: resultado = `O total da compra foi de ${(2.8 * qtde).toFixed(2)}R$` ; break; 
+      default: resultado = "Produto inexistente!";
+    }
+    console.log(resultado)
+  }
+  comprarProduto(100, 5)
+  comprarProduto(111, 5)
+})()
+
+//Exercício 20
+console.log('\nExercício 20');
+(function() {
+  const cedulasPossiveis = [100, 50, 20, 10, 5, 1]
+
+  const contaCedulas = (precoProduto) => {
+    const cedulasUsadas = [0, 0, 0, 0, 0, 0]
+    cedulasPossiveis.forEach((valor, indice) => {
+      if(precoProduto >= valor) {
+        while(precoProduto >= valor) {
+          precoProduto -= valor
+          cedulasUsadas[indice] += 1
+        }
+      }
+    })
+    cedulasUsadas.forEach((valor, indice) => {
+      let tipoCedula = ""
+      switch (indice) {
+        case 0: tipoCedula = "100"; break;
+        case 1: tipoCedula = "50"; break;
+        case 2: tipoCedula = "20"; break;
+        case 3: tipoCedula = "10"; break;
+        case 4: tipoCedula = "5"; break;
+        default: tipoCedula = "1"
+      }
+      if(valor > 0) {
+        console.log(`Usou ${valor} cédula(s) de ${tipoCedula}`)
+      }
+    })
+  }
+  contaCedulas(396)
+})()
+
 //Exercício 30
 console.log('\nExercício 30');
 (function() {
@@ -181,21 +376,24 @@ console.log('\nExercício 33');
 //Exercício 34
 console.log('\nExercício 34');
 (function() {
-  const palavra1 = "BaNaNa"
-  const palavra2 = "bAn"
+  const palavra1 = "mar"
+  const palavra2 = "Ram"
   let saida = ""
   const validaCaracteres = (palavra1, palavra2) => { 
     if(palavra2.length > palavra1.length)
       [palavra2, palavra1] = [palavra1, palavra2]
-    for(let i = 0; i < palavra2.length; i++) {
-      const letra = palavra2.toLowerCase().charAt(i)
-      for(let j = 0; j < palavra1.length; j++) {
-        if(letra === palavra1.toLowerCase().charAt(j)) {
-          saida += letra
-          break;
-        }
+    const arrayPalavra1 = [...palavra1.toLowerCase()]
+    const arrayPalavra2 = [...palavra2.toLowerCase()]
+    let saida = ""
+    
+    arrayPalavra2.forEach((letra, indice) => { 
+      arrayPalavra1.forEach(
+        (valor) => {
+          if(letra === valor && saida.length < indice+1) 
+            saida += letra
+        })
       }
-    }
+    )
     console.log(saida === palavra2.toLowerCase())
   }
   validaCaracteres(palavra1, palavra2)
