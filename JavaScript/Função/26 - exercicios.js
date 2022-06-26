@@ -335,6 +335,154 @@ console.log('\nExercício 20');
   contaCedulas(396)
 })()
 
+//Exercício 21
+console.log('\nExercício 21');
+(function() {
+  const idade = 78
+  const valorPlanoSaude = idade => {
+    let valorPlano = 100
+    if(idade > 60) {
+      valorPlano += 130
+    }else if(idade > 30) {
+      valorPlano += 95
+    }else if(idade > 10) {
+      valorPlano += 50
+    }else
+      valorPlano +=80
+    return console.log(`Valor total do plano ${valorPlano}R$`)
+  }
+  valorPlanoSaude(idade)
+})() 
+
+//Exercício 22
+console.log('\nExercício 22');
+(function() {
+  const valorAnuidade = 500
+  const calculaJurosComposto = (capital, taxa, tempo) => { 
+    const montante = capital * (Math.pow(1+taxa, tempo-1))
+    return (montante - capital)
+  }
+  const calcAnuidade = (valorAnuidade, mesPagamento) => {
+    valorAnuidade  += calculaJurosComposto(valorAnuidade, 5, mesPagamento)
+    console.log(`Pagando no mês ${mesPagamento} o valor da anuidade é de ${valorAnuidade}R$`)
+  }
+  calcAnuidade(valorAnuidade, 1)
+})()
+
+console.log('\nExercício 23');
+(function() {
+  const aluno = {codigo: 200, notas:[7, 3, 1], pesoNota:[4, 3, 3]}
+  const calcMediaPonderada = (aluno) => {
+    let somaNotas = 0;
+    let pesoNotas = 0;
+    aluno.notas.forEach((valor, indice) => {
+      somaNotas += valor * aluno.pesoNota[indice]
+      pesoNotas += aluno.pesoNota[indice]
+    })
+    if((somaNotas / pesoNotas) > 5)
+      console.log('APROVADO!')
+    else console.log('REPROVADO!')
+  }
+  calcMediaPonderada(aluno)
+})()
+
+//Exercício 24
+console.log('\nExercício 24');
+(function() {
+  const repeteHelloWorld = () => {
+    let repeticao = 1
+    while(repeticao <= 11) {
+      console.log("HelloWorld")
+      repeticao++
+    }
+  }
+  repeteHelloWorld()
+})()
+
+//Exercício 25
+console.log('\nExercício 25');
+(function() {
+  for(let i = 1; i <= 50; i++) {
+    console.log(`Repetição numero ${i}`)
+  }
+})()
+
+//Exercício 26
+console.log('\nExercício 26');
+(function() {
+  const pares = () => {
+    return console.log(new Array(101)
+      .fill()
+      .map((d, i) => i + 0 )
+      .filter((valor) => valor % 2 === 0));
+  }
+  pares()
+})()
+
+//Exercício 27
+console.log('\nExercício 27');
+(function() {
+  const crianca1 = {altura: 44, taxaCrescimentoAnual:3}
+  const crianca2 = {altura: 40, taxaCrescimentoAnual:5}
+  const comparaAltura = (crianca1, crianca2) => {
+    let criancaMenor = false
+    let criancaMaior = false
+    let anosCrescimento = 0
+    if(crianca1.altura > crianca2.altura) {
+      criancaMaior = crianca1
+      criancaMenor = crianca2
+    }
+    else if(crianca2.altura > crianca1.altura) {
+      criancaMaior = crianca2
+      criancaMenor = crianca1
+    }
+
+    if(criancaMenor && criancaMenor.taxaCrescimentoAnual > criancaMaior.taxaCrescimentoAnual) {
+      while(criancaMaior.altura > criancaMenor.altura) {
+        anosCrescimento++
+        criancaMenor.altura += criancaMenor.taxaCrescimentoAnual
+        criancaMaior.altura += criancaMaior.taxaCrescimentoAnual
+      }
+      return console.log(`A criança menor irá passar a altura da maior em ${anosCrescimento} anos`);
+    } 
+  }
+  comparaAltura(crianca1, crianca2)
+})()
+
+//Exercício 28
+console.log('\nExercício 28');
+(function() {
+  const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  let impares = 0
+  let pares = 0
+  numeros.forEach((valor) => {
+    if(valor % 2 == 0) {
+      pares++
+    } else impares++
+  })
+  console.log(`Total de Pares: ${pares}\nTotal de Impares: ${impares}`)
+})()
+
+//Exercício 29
+console.log('\nExercício 29');
+(function(){
+  const numeros = [5, 12, 7, 10, 2, 9, 21, 20, 8, 14, 11]
+  let numerosDentroIntervalo = 0
+  let numerosForaIntervalo = 0
+  numeros.forEach((valor) => {
+    let encontrou = false;
+    for(let i = 10; i <= 20; i++) {
+      if(valor === i) {
+        encontrou = true
+        numerosDentroIntervalo++
+      }
+    }
+    if(!encontrou)
+      numerosForaIntervalo++
+  })
+  console.log(`Numeros fora do intervalo: ${numerosForaIntervalo}\nNumeros dentro do intervalo: ${numerosDentroIntervalo}`)
+})()
+
 //Exercício 30
 console.log('\nExercício 30');
 (function() {
