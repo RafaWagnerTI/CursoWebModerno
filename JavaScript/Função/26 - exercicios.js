@@ -369,6 +369,7 @@ console.log('\nExercício 22');
   calcAnuidade(valorAnuidade, 1)
 })()
 
+//Exercício 23
 console.log('\nExercício 23');
 (function() {
   const aluno = {codigo: 200, notas:[7, 3, 1], pesoNota:[4, 3, 3]}
