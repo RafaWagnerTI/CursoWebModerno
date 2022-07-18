@@ -15,8 +15,8 @@ console.log('\nExercício 02');
 //Exercício 03
 console.log('\nExercício 03');
 (function() {
-  const calcularSalario = (qtdHoras, valorHora) => qtdHoras * valorHora
-  console.log(`R$ ${calcularSalario(150, 40.5).toFixed(2)}`)
+  const calcularSalario = (qtdHoras, valorHora) => (qtdHoras * valorHora) - ((qtdHoras * valorHora) * 0.3)
+  console.log(`R$ ${calcularSalario(180, 60).toFixed(2)}`)
 })()
 
 //Exercício 04
@@ -58,14 +58,12 @@ console.log('\nExercício 05');
 //Exercício 06
 console.log('\nExercíco 06');
 (function() {
-  const inverso = valor => {
-    switch(typeof valor) {
-      case typeof false: valor = !valor; break;
-      case typeof 0: valor = valor * -1; break;
-      default: valor =  `booleano ou número esperados, mas o parâmetro é do tipo ${typeof valor}`
-    }
-      
-    console.log(valor)
+    const inverso = valor => {
+    const tipo = typeof valor
+    if (tipo == "boolean") return !valor
+    else if (tipo == "number") return -valor
+    else
+    return `booleano ou  número esperados, mas o parâmetro é do tipo ${tipo}`
   }
   inverso(true)
   inverso("6")
@@ -96,11 +94,14 @@ console.log('\nExercício 07');
 //Exercício 08
 console.log('\nExercício 08');
 (function() {
-  const multiplicar = (valor1, valor2) => {
-    if(valor1 < 0 || valor2 < 0)
-      return console.log('Os valores precisam ser maiores que 0')
+  const multiplicar = (numeroA, numeroB) => {
+    let resultado = 0
+    /* a otimização feita para diminuir a quantidade de chamadas recursivas pode ser
+      realizada aqui para diminuir a quantidade de loops */
+    for(let i = 0; i < numeroB; i++)
+      resultado += numeroA
+    return console.log(resultado)
 
-    console.log('O resultado é: ' + valor1 * valor2)
   }
 
   multiplicar(-1, 6)
@@ -113,9 +114,7 @@ console.log('\nExercício 09');
 (function() {
   const repetir = (valor, repeticoes) => {
     return console.log(
-      new Array(repeticoes)
-        .fill()
-        .map((e, i) => e = valor))
+      Array(repeticoes).fill(valor))
   }
   repetir("codigo", 2)
   repetir(7, 3)
@@ -125,11 +124,7 @@ console.log('\nExercício 09');
 console.log('\nExercício 10');
 (function() {
   const simboloMais = qtdMais => {
-    let simbolos = ""
-    while(qtdMais-- > 0) {
-      simbolos += "+"
-    }
-    console.log(simbolos)
+    return console.log("+".repeat(qtdMais))
   }
   simboloMais(2)
   simboloMais(4)
@@ -138,20 +133,21 @@ console.log('\nExercício 10');
 //Exercício 11
 console.log('\nExercício 11');
 (function() {
-  const receberPrimeiroEUltimoElemento = array => {
-     console.log(new Array(array[0], array[array.length-1]))
+  const receberPrimeiroEUltimoElemento = ([primeiroElemento, ...elementosRestantes]) => {
+    const ultimoElemento = elementosRestantes.pop()
+    return console.log([primeiroElemento, ultimoElemento]);
   }
-  receberPrimeiroEUltimoElemento([5,6,7])
-})()
+  receberPrimeiroEUltimoElemento([7,14,"olá"])
+ }
+ )()
 
 //Exercício 12
 console.log('\nExercício 12');
 (function() {
   const removerPropriedade = (objeto, atributo) => {
-    const newObj = objeto;
-    delete newObj[atributo]
-    console.log(newObj)
-    console.log(Object.is(newObj, objeto))
+    const copia = Object.assign({}, objeto)
+    delete copia[atributo]
+    return console.log(copia)
   }
   removerPropriedade({a: 1, b: 2}, "a")
 })()
@@ -169,11 +165,8 @@ console.log('\nExercício 13');
 console.log('\nExercício 14');
 (function() {
   const objetoParaArray = objeto => {
-    let array = []
-    for(let key in objeto) 
-      if(objeto.hasOwnProperty(key))
-        array.push([key, objeto[key]]);
-  console.log(array)
+    return console.log(Object.entries(objeto))
+
 }
   objetoParaArray({ 
     nome: "Maria", 
@@ -218,9 +211,7 @@ console.log('\nExercício 17');
 console.log('\nExercício 18');
 (function() {
   const despesasTotais = array => {
-    let totalDespesas = 0;
-    array.forEach(value => { totalDespesas += value.preco})
-    console.log(totalDespesas);
+    console.log(array.reduce((acumulador, valorAtual) => acumulador + valorAtual.preco, 0));
   }
   despesasTotais([
     {nome: "Jornal online", categoria: "Informação", preco: 89.99},
@@ -259,12 +250,7 @@ console.log('\nExercício 20');
 console.log('\nExercício 21');
 (function() {
   const menorNumero = array => {
-    let numero = Number.MAX_VALUE
-    array.forEach(value => {
-      if(numero > value) 
-        numero = value
-    })
-    console.log(numero)
+    console.log(Math.min(...array));
   }
   menorNumero([10, 5, 35, 65])
   menorNumero([5, -15, 50, 3]) 
@@ -298,12 +284,9 @@ console.log('\nExercício 23');
 //Exercício 24
 console.log('\nExercício 24');
 (function() {
-  const contarCaracteres = (caracter, palavra) => {
-    let repeticoes = 0
-    const arrayPalavra = [...palavra]
-    arrayPalavra.forEach(value => { if(value === caracter) repeticoes++ })
-    console.log(repeticoes)
-  }
+  const contarCaracteres = (caractereBuscado, palavra) => {
+    console.log([...palavra].filter(caractere => caractere === caractereBuscado).length);
+   }
   contarCaracteres("r", "A sorte favorece os audazes")
   contarCaracteres("c", "Conhece-te a ti mesmo")
 })()
@@ -323,16 +306,8 @@ console.log('\nExercício 25');
 console.log('\nExercício 26');
 (function () {
   const removerVogais = palavra => {
-    let novaPalavra = ""
-    const arrayPalavra = [...palavra]
-    arrayPalavra.forEach(value => {
-      if(value.toLowerCase() !== 'a' &&
-         value.toLowerCase() !== 'e' &&
-         value.toLowerCase() !== 'i' &&
-         value.toLowerCase() !== 'o' &&
-         value.toLowerCase() !== 'u')
-        novaPalavra += value})
-    console.log(novaPalavra)
+    return console.log(palavra.replace(/[aeiou]/ig, ''));
+
   }
   removerVogais("Cod3r")
   removerVogais("Fundamentos")
@@ -342,12 +317,10 @@ console.log('\nExercício 26');
 console.log('\nExercício 27');
 (function() {
   const filtrarPorQuantidadeDeDigitos = (array, casas) => {
-    let validos = [];
-    array.forEach(value => {
-      if(value.toString().length == casas)
-        validos.push(value)
-    })
-    console.log(validos)
+    console.log(array.filter(numero => {
+      const quantidadeDeDigitos = String(numero).length
+      return quantidadeDeDigitos === casas
+    }));  
   }
   filtrarPorQuantidadeDeDigitos([38, 2, 365, 10, 125, 11], 2)
   filtrarPorQuantidadeDeDigitos([5, 9, 1, 125, 11], 1)
@@ -371,15 +344,10 @@ console.log('\nExercício 28');
 console.log('\nExercício 29');
 (function() {
   const segundoMaior = array => {
-    let segundoMaior = 0;
-    array.forEach(value => { 
-      array.forEach(value2 => {
-        if(value2 > value && segundoMaior < value) {
-          segundoMaior = value
-        }
-      })
-    })
-    console.log(segundoMaior)
+    const maiorNumero = Math.max(...array)
+    numeros = array.filter(numero => numero != maiorNumero)
+    const segundoMaior = Math.max(...numeros)
+    return console.log(segundoMaior)
   }
   segundoMaior([12, 16, 1, 5])
   segundoMaior([8, 4, 5, 6])
@@ -388,22 +356,20 @@ console.log('\nExercício 29');
 //Exercício 30
 console.log('\nExercício 30');
 (function() {
-  const recerberMelhorEstudante = alunos => {
-    let total, media;
-    let maiorMedia = 0;
-    let alunoMaiorMedia;
-    for(key in alunos) {
-      total = 0;
-      alunos[key].forEach(value => total += value)
-      media = (total/alunos[key].length)
-      if(media > maiorMedia) {
-        alunoMaiorMedia = {}
-        maiorMedia = media
-        alunoMaiorMedia[key] = media
-      }
-    }
-    console.log(alunoMaiorMedia)
+  const soma = array => array.reduce((acumulador, atual) => acumulador + atual, 0)
+  const media = array => soma(array) / array.length
+
+  function recerberMelhorEstudante(estudantes) {
+    const estudantesComMedias = Object.entries(estudantes).map( estudante => {
+    const chave = 0,
+    valor = 1
+    return { nome: estudante[chave], media: media(estudante[valor]) }
+    })
+    const estudantesOrdenados = estudantesComMedias.sort( (estudanteA, estudanteB) => estudanteB.media - estudanteA.media )
+    const melhorEstudante = estudantesOrdenados[0]
+    return console.log(melhorEstudante)
   }
+
   recerberMelhorEstudante({
     Joao: [8, 7.6, 8.9, 6], // média 7.625
     Mariana: [9, 6.6, 7.9, 8], // média 7.875
