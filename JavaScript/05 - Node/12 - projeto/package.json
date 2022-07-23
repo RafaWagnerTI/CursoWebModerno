@@ -1,8 +1,8 @@
 {
-  "name": "04---funcionarios",
+  "name": "12---projeto",
   "version": "1.0.0",
   "description": "",
-  "main": "04 - funcionarios.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2"
+    "body-parser": "^1.20.0",
+    "express": "4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "1.14.11"
   }
 }

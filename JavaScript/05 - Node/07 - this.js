@@ -15,3 +15,12 @@ function logThis() {
 }
 
 logThis()
+
+const exibeA = () => {
+  console.log(this === global);
+  // Dentro de Arrow Function this aponta para module.exports
+  console.log(this === exports);
+  console.log(this === module.exports);
+}
+
+exibeA();
